@@ -6,6 +6,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var partials = require('express-partials'); 
 
 // IMPORT De enrutadores
 var routes = require('./routes/index');
@@ -21,6 +22,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // app.use => INSTALACIÓN (de MWs)
+app.use(partials());  // El módulo express-partials importa una factory (debe invocarse con ()) para generar el MW a instalar
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
