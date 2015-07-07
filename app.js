@@ -1,3 +1,5 @@
+// require => IMPORTs
+// IMPORT De paquetes con MW
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,31 +7,39 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// IMPORT De enrutadores
 var routes = require('./routes/index');
-var users = require('./routes/users');
+//var users = require('./routes/users');  
 
+// ***** CREACIÓN DE LA APLICACIÓN *****
 var app = express();
 
+// INSTALACIONES
+// app.set => INSTALACIÓN DE GENERADORES DE VISTAS EJS
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// app.use => INSTALACIÓN (de MWs)
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
+// ASOCIAR rutas A gestores
+app.use('/', routes);		// ruta "/" 		=> routes/index.js
+//app.use('/users', users);	// ruta "/users"	=> routes/users.js
 
+// RESTO DE RUTAS
+// Creación(function)/Instalación(app.use) de TRES MW's
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
-    next(err);
+    next(err);			// lo siguiente que se se ejecute será el sgte MW ("err")
 });
 
 // error handlers
@@ -39,9 +49,9 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
+        res.render('error', {			// Renderiza (render)	=> views/error.js
+            message: err.message,		// DOS PARAMS: 1. message y 2. error
+            error: err					// en views/error.js se usan <%= message %> y <%=error%>
         });
     });
 }
@@ -52,9 +62,9 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,
-        error: {}
+        error: {}						// No se imprime err (objeto empty)
     });
 });
 
-
+//EXPORTar "app" para comando de arranque
 module.exports = app;
