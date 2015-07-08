@@ -8,7 +8,7 @@ var quizController = require('../controllers/quiz_controller');	// import "quiz_
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { 	// Renderiza (render)	=> views/index.js
+  res.render('index', { 	// Renderiza (render)	=> views/index.ejs
 		title: 'Quiz' });	// pasando un PARAM (title)
 });
 
