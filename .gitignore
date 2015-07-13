@@ -27,6 +27,8 @@ $RECYCLE.BIN/
 .DS_Store
 .AppleDouble
 .LSOverride
+npm-debug.log
+quiz.sqlite
 
 # Thumbnails
 ._*
