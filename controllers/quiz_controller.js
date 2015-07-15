@@ -1,3 +1,4 @@
+//IMPORT de "models" para poder acceder a BBDD
 var models = require('../models/models.js');
 
 // EXPORTA 2 MWs (question y answer)
@@ -6,7 +7,9 @@ var models = require('../models/models.js');
 exports.question = function(req, res) {  
 //   res.render('quizes/question', {		// Renderiza (render)	=> quizes/question.ejs
 //	   pregunta: 'Capital de Italia'}); // pasando un PARAM (pregunta)   
-	models.Quiz.findAll().success(function(quiz) {
+
+//	models.Quiz.findAll().success(function(quiz) {
+	models.Quiz.findAll().then(function(quiz) {
 		res.render('quizes/question', { pregunta: quiz[0].pregunta});
 	})
 };  
@@ -20,7 +23,9 @@ exports.answer = function(req, res) {
       res.render('quizes/answer', {respuesta: 'Incorrecto'});  
    }  
  */
-	models.Quiz.findAll().success(function(quiz) {
+
+//	models.Quiz.findAll().success(function(quiz) {
+	models.Quiz.findAll().then(function(quiz) {
 		if (req.query.respuesta === quiz[0].respuesta) {
 			res.render('quizes/answer', { respuesta: 'Correcto' });
 		} else {
