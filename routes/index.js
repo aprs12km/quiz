@@ -6,7 +6,7 @@ var router = express.Router();
 // IMPORT De controladores
 var quizController = require('../controllers/quiz_controller');	// import "quiz_controller.js"
 
-/* GET home page. */
+/* Página de entrada */
 router.get('/', function(req, res) {
   res.render('index', { 	// Renderiza (render)	=> views/index.ejs
 		title: 'Quiz' });	// pasando un PARAM (title)
@@ -16,8 +16,13 @@ router.get('/author', function(req, res){
 	res.render('author',{title: 'Quiz'});
 });
 
-router.get('/quizes/question', quizController.question);
-router.get('/quizes/answer', quizController.answer);
+// Definición de rutas de /quizes
+router.get('/quizes',                      quizController.index);
+router.get('/quizes/:quizId(\\d+)',        quizController.show);
+router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
+//router.get('/quizes/question', quizController.question);
+//router.get('/quizes/answer', quizController.answer);
+
 
 //EXPORTar "router" para comando de arranque
 module.exports = router;
