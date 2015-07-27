@@ -9,7 +9,7 @@ var quizController = require('../controllers/quiz_controller');	// import "quiz_
 /* Página de entrada */
 router.get('/', function(req, res) {
   res.render('index', { 	// Renderiza (render)	=> views/index.ejs
-		title: 'Quiz' });	// pasando un PARAM (title)
+		title: 'Quiz', errors: [] });	// pasando un PARAM (title)
 });
 
 router.get('/author', function(req, res){
