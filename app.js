@@ -10,7 +10,6 @@ var partials = require('express-partials');
 
 // IMPORT De enrutadores
 var routes = require('./routes/index');
-//var users = require('./routes/users');  
 
 // ***** CREACIÓN DE LA APLICACIÓN *****
 var app = express();
@@ -27,7 +26,7 @@ app.use(partials());  // El módulo express-partials importa una factory (debe in
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
