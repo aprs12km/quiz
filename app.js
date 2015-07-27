@@ -52,7 +52,8 @@ if (app.get('env') === 'development') {
         res.status(err.status || 500);
         res.render('error', {			// Renderiza (render)	=> views/error.js
             message: err.message,		// DOS PARAMS: 1. message y 2. error
-            error: err					// en views/error.js se usan <%= message %> y <%=error%>
+            error: err,					// en views/error.js se usan <%= message %> y <%=error%>
+			errors: []
         });
     });
 }
@@ -63,7 +64,8 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,
-        error: {}						// No se imprime err (objeto empty)
+        error: {},						// No se imprime err (objeto empty)
+		errors: []
     });
 });
 

@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/author', function(req, res){
-	res.render('author',{title: 'Quiz'});
+	res.render('author',{title: 'Quiz', errors:[]});
 });
 
 // Autoload de comandos con :quizId
